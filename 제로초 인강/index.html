@@ -112,9 +112,11 @@
             top : 1px;
             background-color: var(--color_option_bg);
             border-radius: 50%;
+            z-index: 0;
             /* padding :9px; */
         }
         #header-hamburger:hover > div {
+            z-index: 1;
             position: relative;
             left: 1px;
             top: 1px;
@@ -130,6 +132,15 @@
         #main {
             height : 2000px;
         }
+        
+        .blind{
+            position: absolute;
+        clip: rect(0 0 0 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -137,9 +148,12 @@
         <div id ="wrap-center">
             <div id = "header">
                 <button id = "header-hamburger">
-                    <div>
-
-                    </div>
+                    <!--before-->
+                    <div></div>
+                    <span class = "blind">
+                        확장영역
+                    </span>
+                    <!--after-->
                 </button>
             </div>
             <div id = "search"></div>
@@ -154,3 +168,5 @@
 <!-- 패딩 , 마진의 차이 
 마진 ) 바깥요소로 클릭이 안됨 , 
 요소에 포함되게 하고 싶으면 패딩 아님 마진 -->
+<!-- 1-10강 )zindex는 형제까리만 가능하다, position이 static이면 안됨 
+position 더 알기 -->
