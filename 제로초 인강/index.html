@@ -76,7 +76,7 @@
         * {
             box-sizing: border-box;
         }
-        html, body {
+        html, body, form {
             margin: 0;
             padding: 0;
         }
@@ -156,6 +156,8 @@
             margin: -1px;
             overflow:hidden;
         }
+        
+
     </style>
 </head>
 <body>
@@ -187,7 +189,45 @@
                     <!--after-->
                 </button>
             </div>
-            <div id = "search"></div>
+            <style>
+                #search > form{
+                    display : inline-block;
+                    width: 706px;
+                    height: 58px;
+                    border : 1px solid #03c75a;
+                    border-radius:33px;
+                    text-align : left;
+                }
+                #search > form > input {
+                    width : 480px;
+                    height :100%;
+                    padding : 17px 0;
+                    border : none;
+                    outline : none;}
+
+
+                #search > form svg {
+                    width : 24px;
+                    height : 24px;
+                }
+                #search >form a {
+                    width : 68px;
+                    height : 100%
+                    padding : 17px;
+                    margin-right : 12px;
+                }
+            </style>
+            <div id = "search">
+                <form action ="">
+                    <a href = "#"></a>
+                    <label for="search-input" class="blind">검색어 입력</label>
+                    <input type="text">
+                    <button class ="blind">
+                        검색
+                    </button>
+
+                </form>
+            </div>
             <div id = "nav"></div>
             <div id = "main"></div>
 </body>
@@ -205,3 +245,4 @@ position 더 알기 -->
 padding은 10으로 설정. 32+10+10 이어서 52인거임
 box-sizging : border-box 하는 이유 : width가 padding이랑 border 너비를 전체 너비를 포함 !
 -->
+<!--한번만은 id, 여러번 class-->
