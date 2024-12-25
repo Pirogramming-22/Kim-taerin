@@ -183,7 +183,7 @@
                     <!--before-->
                     <div></div>
                     <span class = "blind">
-                        확장영역
+                        네이버페이이
                     </span>
                     <!--after-->
                 </button>
@@ -191,7 +191,7 @@
                     <!--before-->
                     <div></div>
                     <span class = "blind">
-                        확장영역
+                        알림림
                     </span>
                     <!--after-->
                 </button>
@@ -528,7 +528,7 @@
                 </ul>
             </nav>
             <style>
-                #main{
+             #main{
                     display: flex;
                     margin-top: 51px;
                 }
@@ -541,11 +541,11 @@
                 }
                 #main-left-ad, #main-right-ad {
                     background : gray;
-                    /* border-radius: 8px; */
+                    border-radius: 8px;
                 }
                 aside[id$=ad]{
                     border-radius: 8px;
-                }/*ad로 아이디가 끝남남*/
+                }/*ad로 끝나는 태그에 다 사용되는거거*/
                 #main-left-ad {
                     height: 130px;
                     margin-bottom: 16px;
@@ -558,10 +558,6 @@
                     border-radius: 8px;
                     margin-bottom: 16px;
                 } /*이건 또 ad로 아이디가 끝남남 */
-                #main-newstand{
-                    height: 426px;
-                }
-                
                 #main-login{
                     display: flex;
                     flex-flow: column;
@@ -603,6 +599,9 @@
                     color: var(--color_caption2);
                     letter-spacing: -0.4px;
                 }
+                #main-login > div:last-of-type a:hover{
+            text-decoration: underline;
+        }
                 #main-login > div:last-of-type>a:nth-of-type(2)::before, #main-login > div:last-of-type>a:nth-of-type(2)::after{
                     content: '';
                     display: inline-block;
@@ -639,11 +638,24 @@
                 #main-stock{
                     height: 236px;
                 }
+                #main-newstand{
+                    height: 426px;
+                    display: flex;
+                    flex-flow: column;
+                }
+                #main-newstand-top{
+                    flex :1;
+                    padding : 18px 20px;
+                }
                 #main-newstand header{
                     font-size: 1.6rem;
                     color:rgba(8,8,8,.5);
                     display: flex;
                     justify-content: flex-start;
+                    line-height: 23px;
+                    margin-bottom: 17px;
+                    counter-reset: var(--color_option_bg);
+                    border-radius: 4px
                 }
                 #main-newstand header .bold{
                     font-weight: bold;
@@ -652,26 +664,54 @@
                 #main-newstand-gray{
                     display: flex;
                     justify-content: flex-start;
+                    height: 50px;
+                    padding: 12px 20px;
+                    background-color: var(--color_option_bg);
+                    border-radius: 4px;
                 }
                 #main-newstand a{
                     text-decoration: none;
+                    /* display: flex;
+                    flex-flow: column; */
+                }
+                #main-newstand a:hover{
+                    text-decoration: underline;
+                } 
+                /* 손 들면 밑줄  */
+                #main-newstand a:visited{
+                    color: inherit;
+                } 
+                #main-newstand-grid{
+                    display: grid; 
+                    justify-content: center;
+                    align-items: center;
+                    height: 224px;
+                    grid-gap: 1px;
+                    grid-template-rows: repeat(4, 1fr);
+                    width: 790px;
+                    grid-template-columns: repeat(6, 1fr); 
+                    background-color: var(--color_border_in);
+                    border: 1px solid var(--color_border_in);
+                    border-radius: 4px;
+                    margin-top: 18px;
+                }
+/* 3-4강) 그리드는 격자로 주로 씀 , 격자를 마련해두면 알아서 배열  */
+                #main-newstand-grid> div{
+                    height: 100%;
+                    background-color: white;
                     display: flex;
-                    flex-flow: column;
+                    justify-content: center;
+                    align-items: center;
                 }
                 #main-newstand-top{
                     flex: 1;
                     padding: 18px 20px;
                 }
-                #main-newstand a:visited{
-                    color:inherit;
-                }
-                #main-newstand a:hover{
-                    text-decoration: underline;
-                }
                 #main-newstand footer{
                     padding: 10px 0 11px;
                     border-top: 1px solid var(--color_border_in);
                 }
+
 
             </style>
             <main id = "main">
@@ -690,12 +730,13 @@
                                 <div>
                                     <a href="#">전체언론사</a>
                                     <a href="#">연합뉴스</a>
-                                    <a href="#">파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지</a>
+                                    <a href="#">파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지</a>
                                 </div>
                                 <div>
                                     <a href="#">뉴스스탠드</a>
                                     <a href="#">뉴스홈</a>
                                 </div>
+                                
                                 <div id="main-newstand-grid">
                                 <div>언론사</div><div>언론사</div><div>언론사</div><div>언론사</div>
                                 <div>언론사</div><div>언론사</div><div>언론사</div><div>언론사</div>
@@ -707,7 +748,7 @@
                                 </div>
                                 <footer>
                                     <button><span class="blind">이전</span></button>
-                                    <div>언론사 더보기 1페이지 전체</div>
+                                    <div>언론사 더보기 1페이지 전체/4</div>
                                     <button><span class="blind">다음</span></button>
                                     <button><span class="blind">목록보기</span></button>
                                     <button><span class="blind">격자보기</span></button>
@@ -757,3 +798,5 @@ box-sizging : border-box 하는 이유 : width가 padding이랑 border 너비를
 <!--text align !!, justify-center-->
 <!--2-2강 ) flex / justify-content 제대로 알기 !-->
 <!--2-5) block inline flex 알기.  flex으로 적기 (?)-->
+<!-- 3-4강) 그리드는 격자로 주로 씀 , 격자를 마련해두면 알아서 배열  -->
+<!-- ~~~~~ -->
