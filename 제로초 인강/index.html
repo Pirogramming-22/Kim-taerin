@@ -77,6 +77,8 @@
             box-sizing: border-box;
         }
         html, body {
+            display: flex;
+justify-content: center;
             margin: 0;
             padding: 0;
             font-size: 10.5px;
@@ -639,85 +641,133 @@
                     height: 236px;
                 }
                 #main-newstand{
-                    height: 426px;
-                    display: flex;
-                    flex-flow: column;
-                }
-                #main-newstand-top{
-                    flex :1;
-                    padding : 18px 20px;
-                }
-                #main-newstand header{
-                    font-size: 1.6rem;
-                    color:rgba(8,8,8,.5);
-                    display: flex;
-                    justify-content: flex-start;
-                    line-height: 23px;
-                    margin-bottom: 17px;
-                    counter-reset: var(--color_option_bg);
-                    border-radius: 4px
-                }
-                #main-newstand header .bold{
-                    font-weight: bold;
-                    color:black;
-                }
-                #main-newstand-gray{
-                    display: flex;
-                    justify-content: flex-start;
-                    height: 50px;
-                    padding: 12px 20px;
-                    background-color: var(--color_option_bg);
-                    border-radius: 4px;
-                }
-                #main-newstand a{
-                    text-decoration: none;
-                    /* display: flex;
-                    flex-flow: column; */
-                }
-                #main-newstand a:hover{
-                    text-decoration: underline;
-                } 
-                /* 손 들면 밑줄  */
-                #main-newstand a:visited{
-                    color: inherit;
-                } 
-                #main-newstand-grid{
-                    display: grid; 
-                    justify-content: center;
-                    align-items: center;
-                    height: 224px;
-                    grid-gap: 1px;
-                    grid-template-rows: repeat(4, 1fr);
-                    width: 790px;
-                    grid-template-columns: repeat(6, 1fr); 
-                    background-color: var(--color_border_in);
-                    border: 1px solid var(--color_border_in);
-                    border-radius: 4px;
-                    margin-top: 18px;
-                }
-/* 3-4강) 그리드는 격자로 주로 씀 , 격자를 마련해두면 알아서 배열  */
-                #main-newstand-grid> div{
-                    height: 100%;
-                    background-color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-                #main-newstand-top{
-                    flex: 1;
-                    padding: 18px 20px;
-                }
-                #main-newstand footer{
-                    padding: 10px 0 11px;
-                    border-top: 1px solid var(--color_border_in);
-                }
+            height: 426px
+        }
+        .left-section header{
+            font-size: 1.6rem;
+            color:rgba(8,8,8,.5);
+            display: flex;
+            justify-content: flex-start;
+            line-height: 23px;
+            margin-bottom: 17px;
+        }
+        .left-section header .bold{
+            font-weight: bold;
+            color:black;
+        }
+        #main-newstand-gray{
+            display: flex;
+            justify-content: flex-start;
+            height: 50px;
+            padding: 12px 20px;
+            background-color: var(--color_option_bg);
+            border-radius: 4px;
+            font-size: 1.4rem;
+            line-height: 26px;
+        }
+        #main-newstand-gray .left{
+            flex: 1;
+            display: flex;
+        }
+        #main-newstand-gray .left> a:first-of-type{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            vertical-align: top;
+            align-content: space-around;
+            flex-wrap: wrap;
+        }
+        #main-newstand-gray .right{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+        #main-newstand-gray .left > a:first-of-type::after{
+            content: '';
+            background: url(./sp_main.png);
+            background-size: 463px 440px;
+            background-position: -242px -184px;
+            background-repeat: no-repeat;
+            width: 9px;
+            height: 6px;
+            display: inline-block;
+            margin: 10px 0 0 5px;
+            vertical-align: top;
+        }
+        .left-section a{
+            text-decoration: none;
+            display: flex;
+            flex-flow: column;
+        }
+        #main-newstand-animation{
+            padding-left: 25px;
+            position: relative;
+            display: flex;
+        }
+        #main-newstand-animation::before{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 7px;
+            left: 15px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            width: 1px;
+            height: 12px;
+        }
+        #main-newstand-animation a:first-of-type{
+            position: relative;
+            right: 5px;
+            display: inline-block;
+            width: 70px;
+            vertical-align: 70px;
+            line-height: 26px;
+        }
+        
+        #main-newstand-animation a:first-of-type::after {
+            content: "";
+            background: url(./sp_main.png);
+            
+        }
+        #main-newstand-animation a:last-of-type {
+            text-overflow: ellipsis;
+            width: 450px;
+            white-space: nowrap;
+            display: inline-block;
+            overflow: hidden;
+        }
+        #main-newstand-top, #main-shopping-top{
+            flex: 1;
+            padding: 18px 20px;      
+            vertical-align: top; 
+        }
+        #main-newstand-top .dot{
+            display: block;
+        }
+        #main-newstand-top .dot::before{
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: #d3d5d7;
+            background-color: var(--color_dot_divider);
+            margin: 9px 7px 0;
+            border-radius: 50%;
+            vertical-align: 5px;
+        }
+        
+        #main-newstand footer .list:hover::before{
+            filter: brightness(0.7);
+        }
 
+        
 
             </style>
             <main id = "main">
                 <div id="main-left">
                     <aside id="main-left-ad"></aside>
-                    <section id="main-newstand">
+                    <section id="main-newstand" class ="left-section">
                         <div id="main-newstand-top">
                             <header>
                                 <a href="#" class="bold">뉴스스탠드</a>
@@ -727,16 +777,18 @@
                                 <a href="#">경제</a>
                             </header>
                             <div id="main-newstand-gray">
-                                <div>
+                                <div class = "left">
                                     <a href="#">전체언론사</a>
+                                    <div id ="main-newstand-animation">       
                                     <a href="#">연합뉴스</a>
                                     <a href="#">파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지파이팅해야지지</a>
                                 </div>
-                                <div>
-                                    <a href="#">뉴스스탠드</a>
-                                    <a href="#">뉴스홈</a>
                                 </div>
-                                
+                                <div class ="right" style ="gap :2px;">
+                                    <a href="#">뉴스스탠드</a> <span style="color:#606060 ;">|</span>
+                                    <a href="#" class = "bold">뉴스홈</a>
+                                </div>
+                            </div>
                                 <div id="main-newstand-grid">
                                 <div>언론사</div><div>언론사</div><div>언론사</div><div>언론사</div>
                                 <div>언론사</div><div>언론사</div><div>언론사</div><div>언론사</div>
@@ -747,14 +799,14 @@
                                 </div>
                                 </div>
                                 <footer>
-                                    <button><span class="blind">이전</span></button>
-                                    <div>언론사 더보기 1페이지 전체/4</div>
-                                    <button><span class="blind">다음</span></button>
-                                    <button><span class="blind">목록보기</span></button>
-                                    <button><span class="blind">격자보기</span></button>
+                                    <button class = "prev"><span class="blind">이전</span></button>
+                                    <div class="text"><span class="news">언론사</span>&nbsp;더보기&nbsp;1<span class="total">/4</span></div>
+                                    <button class = "next"><span class="blind">다음</span></button>
+                                    <button class ="list"><span class="blind">목록보기</span></button>
+                                    <button class ="grid"><span class="blind">격자보기</span></button>
                                 </footer>
                     </section>
-                    <section id="main-shopping"></section>
+                    <section id="main-shopping" class ="left-section"></section>
                 </div>
                 <div id="main-right">
                     <section id="main-login">
@@ -778,8 +830,6 @@
                 </div>
             </main>
 </body>
-</html>
-
 <!--favicon.ico 뒤 ?,1 잘 알기-->
 <!---1-5강 inline block, inline ! -->
 <!--f12 누르고 개발자 모드에서도 수정할 수 있음을 알기 -->
