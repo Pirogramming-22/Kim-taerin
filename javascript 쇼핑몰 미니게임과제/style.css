@@ -39,7 +39,7 @@ body {
   outline:none;
   cursor : pointer;
   transition: transform (--animation-duration) ease;
-  margin:
+  margin-right: var(--base-space);
 }
 
 .logo:hover,
