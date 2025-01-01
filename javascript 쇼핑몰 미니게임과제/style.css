@@ -15,9 +15,9 @@
   --size-thumbnail :50px;
 }
 
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 
 body {
   height: 100vh;
