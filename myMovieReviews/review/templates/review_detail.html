@@ -2,10 +2,29 @@
 <html>
 <head>
     <title>{{ review.title }}</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        header a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-    <header style="text-align: center; margin-bottom: 20px;">
-        <a href="/" style="font-size: 24px; font-weight: bold; text-decoration: none;">my Movie reviews</a>
+    <header>
+        <a href="/" style="font-weight: bold;">my Movie reviews</a>
+        <a href="{% url 'review_create' %}">Add a New Review</a>
     </header>
     <div style="text-align: center;">
         <h1>{{ review.title }}</h1>
@@ -18,8 +37,10 @@
         <p>러닝타임: {{ review.runtime }}분</p>
         <p>리뷰 내용: {{ review.content }}</p>
         <div style="margin-top: 20px;">
-            <a href="edit/" style="margin-right: 10px;">수정</a> | <a href="{% url 'review_delete' review.id %}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+            <a href="edit/" style="margin-right: 10px;">수정</a>
+            <a href="{% url 'review_delete' review.id %}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
         </div>
     </div>
 </body>
 </html>
+
