@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Movie Reviews</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        header a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" style="font-weight: bold;">my Movie reviews</a>
+        <a href="{% url 'review_create' %}">Add a New Review</a>
+    </header>
+    <h1 style="text-align: center;">My Movie Reviews</h1>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        {% for review in reviews %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+            <img src="{{ review.poster_url }}" alt="{{ review.title }}" style="width: 100%; height: auto;">
+            <h2><a href="{{ review.id }}/">{{ review.title }}</a></h2>
+            <p>개봉년도: {{ review.release_year }}</p>
+            <p>장르: {{ review.genre }}</p>
+            <p>별점: {{ review.rating }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

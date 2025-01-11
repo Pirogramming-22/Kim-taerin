@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Review Form</title>
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        header a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/" style="font-weight: bold;">my Movie reviews</a>
+        <a href="{% url 'review_create' %}">Add a New Review</a>
+    </header>
+    <h1 style="text-align: center;">Movie Review</h1>
+    <form method="post" style="max-width: 600px; margin: 0 auto;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/">Cancel</a>
+    </div>
+</body>
+</html>
