@@ -24,7 +24,7 @@ def developtool_register(request):
 # 디테일 페이지
 def developtool_detail(request, pk):
     tool = get_object_or_404(DevelopTool, pk=pk)
-    ideas = Idea.objects.filter(develop_tool=tool)  # 개발툴에 연관된 아이디어 필터링
+    ideas = Idea.objects.filter(devtool=tool)  # 개발툴에 연관된 아이디어 필터링
     context = {'tool': tool, 'ideas': ideas}
     return render(request, 'developTool/developtool_detail.html', context)
 
