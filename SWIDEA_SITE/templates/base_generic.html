@@ -9,17 +9,23 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{%url 'idea_list'%}">Idea Manager</a>
+            <a class="navbar-brand" href="{% url 'idea_list' %}">My SW Idea Manager</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'idea_list'%}">Home</a>
+                        <a class="nav-link" href="{% url 'idea_list' %}">아이디어 관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'idea_register'%}">아이디어 등록</a>
+                        <a class="nav-link" href="{% url 'idea_register' %}">아이디어 등록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'developtool_list' %}">개발툴 관리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'developtool_register' %}">개발툴 등록</a>
                     </li>
                 </ul>
             </div>
