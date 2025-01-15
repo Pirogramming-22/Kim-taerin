@@ -11,12 +11,28 @@
             <p>1) 아이디어 관심도: {{ idea.interest }}</p>
             <p>2) 예상 개발 툴: {{ idea.devtool }}</p>
             <p>3) 아이디어 설명: {{ idea.content }}</p>
+            <p>4) 찜하기 상태: 
+                {% if idea.is_liked %}
+                    <span class="like-star">★ 찜하기 완료</span>
+                {% else %}
+                    <span class="like-star">☆ 찜하지 않음</span>
+                {% endif %}
+            </p>
+            <p>
+                <a href="{% url 'toggle_like' idea.id %}" class="like-toggle">
+                    {% if idea.is_liked %}
+                        찜 취소
+                    {% else %}
+                        찜하기
+                    {% endif %}
+                </a>
+            </p>
         </div>
     </div>
     <div class='detail-selector'>
         <a href="{% url 'idea_update' idea.id %}">수정</a> | 
         <a href="{% url 'idea_list' %}">목록</a> | 
-        <a href="{% url 'idea_delete' idea.id %}" onclick="return confirm('정말로 삭제하시겠습니까?')">삭제</a>
+        <a href="{% url 'idea_delete' idea.id %}" onclick="
     </div>
 </div>
 {% endblock %}
