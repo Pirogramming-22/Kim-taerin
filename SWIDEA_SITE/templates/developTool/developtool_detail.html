@@ -8,7 +8,9 @@
 <h3>> 만들 수 있는 SW 목록</h3>
 <ul>
     {% for idea in ideas %}
-        <li><a href="{% url 'idea_detail' idea.id %}">{{ idea.name }}</a></li>
+        <li><a href="{% url 'idea_detail' idea.id %}">{{ idea.title }}</a></li>
+        {% empty %}
+        <li>이 개발툴을 사용하는 아이디어가 없습니다.</li>
     {% endfor %}
 </ul>
 
