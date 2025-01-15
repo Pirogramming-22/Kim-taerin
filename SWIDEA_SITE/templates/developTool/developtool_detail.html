@@ -1,12 +1,21 @@
 {% extends 'base_generic.html' %}
+
 {% block content %}
 <h1>{{ tool.name }}</h1>
 <p>{{ tool.kind }}</p>
 <p>{{ tool.content }}</p>
+
+<h3>> 만들 수 있는 SW 목록</h3>
+<ul>
+    {% for idea in ideas %}
+        <li><a href="{% url 'idea_detail' idea.id %}">{{ idea.name }}</a></li>
+    {% endfor %}
+</ul>
+
 <a href="{% url 'developtool_update' tool.id %}">Edit</a>
-<form method="post" action="{% url 'developtool_delete' tool.id %}">
+<form method="post" action="{% url 'developtool_delete' tool.id %}" style="display:inline;">
     {% csrf_token %}
     <button type="submit">Delete</button>
 </form>
-<a href="{% url 'developtool_list' %}">Back to List</a>
+<a href="{% url 'developtool_list' %}">목록으로 돌아가기</a>
 {% endblock %}

@@ -1,12 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import DevelopTool
+from idea.models import Idea 
 from .forms import DevelopToolForm
 
 # Create your views here.
 # 리스트 페이지
 def developtool_list(request):
     tools = DevelopTool.objects.all()
-    return render(request, 'developTool/developtool_list.html', {'tools': tools})
+    context = {'tools': tools}
+    return render(request, 'developTool/developtool_list.html', context)
 
 # 등록 페이지
 def developtool_register(request):
@@ -22,7 +24,9 @@ def developtool_register(request):
 # 디테일 페이지
 def developtool_detail(request, pk):
     tool = get_object_or_404(DevelopTool, pk=pk)
-    return render(request, 'developTool/developtool_detail.html', {'tool': tool})
+    ideas = Idea.objects.filter(develop_tool=tool)  # 개발툴에 연관된 아이디어 필터링
+    context = {'tool': tool, 'ideas': ideas}
+    return render(request, 'developTool/developtool_detail.html', context)
 
 # 수정 페이지
 def developtool_update(request, pk):

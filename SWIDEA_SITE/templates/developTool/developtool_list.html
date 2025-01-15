@@ -1,4 +1,5 @@
 {% extends 'base_generic.html' %}
+
 {% block content %}
 <h1 class="title">DevTool List</h1>
 <div class="sub-title">개발툴 목록 페이지입니다. 자신이 사용가능한 개발툴의 목록을 확인해보세요.</div>
@@ -6,10 +7,11 @@
 <table>
     {% for tool in tools %}
     <tr>
-        <td>{{ tool.name }}</td>
-        <td><a href="{% url 'developtool_detail' tool.id %}">Detail</a></td>
+        <td><a href="{% url 'developtool_detail' tool.id %}">{{ tool.name }}</a></td>
+        <td>{{ tool.languageType }}</td>
+        <td>{{ tool.content }}</td>
     </tr>
     {% endfor %}
 </table>
-{% comment %} <a href="{% url 'developtool_register' %}">Add Tool</a> {% endcomment %}
 {% endblock %}
+
