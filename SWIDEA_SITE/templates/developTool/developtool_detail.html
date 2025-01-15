@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>{{ tool.name }}</h1>
+<p>{{ tool.kind }}</p>
+<p>{{ tool.content }}</p>
+<a href="{% url 'developtool_update' tool.id %}">Edit</a>
+<form method="post" action="{% url 'developtool_delete' tool.id %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+<a href="{% url 'developtool_list' %}">Back to List</a>
+{% endblock %}

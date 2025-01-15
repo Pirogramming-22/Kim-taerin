@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+<h1>DevTool List</h1>
+<table>
+    {% for tool in tools %}
+    <tr>
+        <td>{{ tool.name }}</td>
+        <td><a href="{% url 'developtool_detail' tool.id %}">Detail</a></td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'developtool_register' %}">Add Tool</a>
+{% endblock %}
