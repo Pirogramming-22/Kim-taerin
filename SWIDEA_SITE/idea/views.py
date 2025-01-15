@@ -54,3 +54,16 @@ def idea_delete(request, pk):
         idea.delete()
         return redirect('idea_list')
     return render(request, 'idea/idea_delete.html', {'idea': idea})
+
+def toggle_like(request, pk):
+    idea = get_object_or_404(Idea, pk=pk)
+    idea.is_liked = not idea.is_liked  # 찜하기 상태 반전
+    idea.save()
+    return redirect('idea_list')  # 목록으로 리다이렉트
+
+def change_interest(request, pk, delta):
+    idea = get_object_or_404(Idea, pk=pk)
+    delta = int(delta)  # delta를 정수로 변환
+    idea.interest += delta  # 관심도 변경
+    idea.save()
+    return redirect('idea_list')

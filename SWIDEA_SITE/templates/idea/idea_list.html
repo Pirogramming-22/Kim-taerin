@@ -4,10 +4,11 @@
 <h1 class="title">Idea List</h1>
 <div class="sub-title">나의 아이디어를 잊지 말고 기록해보세요</div>
 
+<!-- 정렬 기준 폼 -->
 <form method="get" action="" class="sort-form">
     <label for="sort_by">정렬 기준:</label>
     <select name="sort_by" onchange="this.form.submit()">
-        <option value="like" {% if sort_by == "like" %}selected{% endif %}>좋아요순</option>
+        <option value="like" {% if sort_by == "like" %}selected{% endif %}>찜하기순</option>
         <option value="name" {% if sort_by == "name" %}selected{% endif %}>이름순</option>
         <option value="created_at" {% if sort_by == "created_at" %}selected{% endif %}>최신순</option>
     </select>
@@ -16,10 +17,30 @@
 <div class="container">
     {% for idea in ideas %}
         <div class="container-item">
+            
             <img class="list-image" src="{{ idea.image.url }}" alt="{{ idea.title }}" width="100px">
+            
             <a class="idea-name" href="{% url 'idea_detail' idea.id %}">{{ idea.title }}</a>
-            <div class="list-text">예상 개발 툴 : {{ idea.devtool }}</div>
-            <div>아이디어 관심도: {{ idea.interest }}</div>
+    
+            <div class="list-text">예상 개발 툴: {{ idea.devtool }}</div>
+            
+            
+            <div>
+                <span>아이디어 관심도: {{ idea.interest }}</span>
+                <a href="{% url 'change_interest' idea.id 1 %}" class="interest-button">+</a>
+                <a href="{% url 'change_interest' idea.id -1 %}" class="interest-button">-</a>
+            </div>
+            
+            
+            <div>
+                <a href="{% url 'toggle_like' idea.id %}">
+                    {% if idea.is_liked %}
+                    <span class="like-star">★</span> <!-- 찜한 상태 -->
+                    {% else %}
+                    <span class="like-star">☆</span> <!-- 찜하지 않은 상태 -->
+                    {% endif %}
+                </a>
+            </div>
         </div>
     {% endfor %}
 </div>
