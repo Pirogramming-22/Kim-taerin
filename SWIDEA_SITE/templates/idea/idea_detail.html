@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="detail-main-container">
+    <h1 class="detail-title">Idea Detail</h1>
+    <div class="detail-sub">아이디어 세부내용 페이지입니다. 당신이 구현하려 한 아이디어들을 자세히 살펴보세요.</div>
+    <div class="detail-container">
+        <img src="{{ idea.image.url }}" alt="{{ idea.title }}" height="300px">
+        <div class="right-items">
+            <h1>{{ idea.title }}</h1>
+            <p>1) 아이디어 관심도: {{ idea.interest }}</p>
+            <p>2) 예상 개발 툴: {{ idea.devtool }}</p>
+            <p>3) 아이디어 설명: {{ idea.content }}</p>
+            <p>4) 찜하기 상태: 
+                {% if idea.is_liked %}
+                    <span class="like-star">★ 찜하기 완료</span>
+                {% else %}
+                    <span class="like-star">☆ 찜하지 않음</span>
+                {% endif %}
+            </p>
+            <p>
+                <a href="{% url 'toggle_like' idea.id %}" class="like-toggle">
+                    {% if idea.is_liked %}
+                        찜 취소
+                    {% else %}
+                        찜하기
+                    {% endif %}
+                </a>
+            </p>
+        </div>
+    </div>
+    <div class='detail-selector'>
+        <a href="{% url 'idea_update' idea.id %}">수정</a> | 
+        <a href="{% url 'idea_list' %}">목록</a> | 
+        <a href="{% url 'idea_delete' idea.id %}" onclick="
+    </div>
+</div>
+{% endblock %}
