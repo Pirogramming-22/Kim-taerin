@@ -1,0 +1,133 @@
+{% extends "layout.html"%}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column align-items-center ">
+    {%for post in posts %}
+    <div class="post_{{ post.id }} col-9 p-3 m-2 d-flex justify-content-center border border-secondary rounded-lg" >
+        <div class="d-flex align-items-center"><img class="rounded-lg" src="{{ post.image.url }}" style="max-width: 100%;"/></div>
+        <div class="col-6" style="padding-right: 0px !important;">
+            <div class="d-flex justify-content-end">
+                <a class="col-9 pt-2 text-center" href="{% url 'main:post_detail' post.pk%}"><h6 class="text-dark">{{ post.title }}</h6></a>
+                <button class="btn btn-sm font-weight-light" onclick="location.href='{% url 'main:post_edit' post.id %}'" style="inline">수정</button>
+                <button class="btn btn-sm font-weight-light" onclick="location.href='{% url 'main:post_delete' post.id %}'" style="inline">삭제</button>
+            </div>
+            <hr>
+            <div>{{ post.content }}</div>
+            <hr>
+            <h6 class="font-weight-light">댓글</h6>
+            <hr>
+            <div class="comments">
+                {%for comment in post.comment_set.all %}
+                    <div class="comment_{{ comment.id }} d-flex justify-content-between">
+                        {{comment.content}}
+                        <button class="btn btn-outline-secondary btn-sm" onclick="deleteComment({{ comment.id }})">삭제</button>
+                    </div>
+                {%endfor %}
+            </div>
+            <hr>
+            {% if post.like %}
+                <div class="post_like" onclick="onClickLike({{ post.id }},'like')">❤️</div>
+            {% else %}
+                <div class="post_dislike" onclick="onClickLike({{ post.id }},'dislike')">🤍</div>
+            {% endif %}
+            <hr>
+            <div class="d-flex justify-content-between">
+                <input class="comment col-10" type="text" placeholder="댓글 달기 ..." style="border:none;">
+                <button class="btn btn-outline-secondary btn-sm" onclick="newComment({{ post.id }})">게시</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra %}
+<script>
+    const requestLike = new XMLHttpRequest();
+    const onClickLike = (id, type) => {
+        const url ='/like_ajax/'; 
+        requestLike.open("POST", url, true);
+        requestLike.setRequestHeader( 
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+        );
+        requestLike.send(JSON.stringify({id:id, type:type}));
+    };
+
+    const likeHandleResponse = () => {
+        if(requestLike.status < 400) {
+            const {id, type} =JSON.parse(requestLike.response);
+            const element = document.querySelector(`.post_${id} .post_${type}`);
+            if (element.innerHTML=='🤍'){
+                element.innerHTML='❤️';
+            }else{
+                element.innerHTML='🤍';
+            }
+        }
+    }
+        requestLike.onreadystatechange = () => {
+        if (requestLike.readyState === XMLHttpRequest.DONE) {
+            likeHandleResponse();
+        }
+    } 
+
+
+//댓글 달기 
+    const requestComment = new XMLHttpRequest();
+
+    const newComment = (id) => {
+        const url ='/new_comment/';
+        requestComment.open("POST", url, true);
+        requestComment.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+        );
+        const content = document.querySelector(`.post_${id} .comment`).value;
+        requestComment.send(JSON.stringify({id:id, content:content}));
+    };
+
+    const commentHandleResponse = () => {
+        if(requestComment.status < 400) {
+            const {id, content, comment_id} =JSON.parse(requestComment.response);
+            const element = document.querySelector(`.post_${id} .comments`);
+            element.innerHTML += `<div class="comment_${comment_id} d-flex justify-content-between">${content}
+                    <button class="btn btn-outline-secondary btn-sm" onclick="deleteComment(${comment_id})">삭제</button></div>`;
+        }
+    }
+
+    requestComment.onreadystatechange = () => {
+        if (requestComment.readyState === XMLHttpRequest.DONE) {
+            commentHandleResponse();
+        }
+    }
+
+    const requestDelComment = new XMLHttpRequest();
+
+    const deleteComment = (id) => {
+        const url ='/delete_comment/';
+        requestDelComment.open("POST", url, true);
+        requestDelComment.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded'
+        );
+        requestDelComment.send(JSON.stringify({id:id}));
+    };
+
+    const commentDelHandleResponse = () => {
+        if(requestDelComment.status < 400) {
+            const {id, content} =JSON.parse(requestDelComment.response);
+            const element = document.querySelector(`.comments .comment_${id}`);
+            //https://hianna.tistory.com/484
+            element.remove()
+        }
+    }
+
+    requestDelComment.onreadystatechange = () => {
+        if (requestDelComment.readyState === XMLHttpRequest.DONE) {
+            commentDelHandleResponse();
+        }
+    } 
+</script>
+{% endblock %}
